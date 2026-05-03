@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus — Docker Node.js App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <span class="logo">NEXUS<span class="logo-dot">▮</span></span>
+      <div class="nav-pills">
+        <span class="pill">Node.js</span>
+        <span class="pill pill-green" id="statusPill">● Connecting…</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">// DOCKER · NODE.JS · EXPRESS</p>
+      <h1>Static App <span class="accent">Running</span><br>in Docker</h1>
+      <p class="sub">A production-ready Node.js static file server — containerised, health-checked, and ready to ship.</p>
+      <div class="actions">
+        <a href="/health" target="_blank" class="btn btn-primary">🏥 Health Check</a>
+        <a href="/api/info" target="_blank" class="btn btn-outline">⚙ Server Info</a>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="terminal" id="terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title">docker logs nexus-app</span>
+        </div>
+        <div class="terminal-body" id="termBody"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <div class="stat-label">STATUS</div>
+          <div class="stat-val" id="sStatus">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">UPTIME</div>
+          <div class="stat-val" id="sUptime">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">NODE VERSION</div>
+          <div class="stat-val" id="sNode">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">HEAP USED</div>
+          <div class="stat-val" id="sHeap">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">ENVIRONMENT</div>
+          <div class="stat-val" id="sEnv">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">PORT</div>
+          <div class="stat-val" id="sPort">—</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEPS -->
+  <section class="steps-section">
+    <div class="container">
+      <p class="section-eye">// QUICK START</p>
+      <h2 class="section-title">Deploy in <span class="accent">3 Steps</span></h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>Build Image</h3>
+          <div class="code-block">docker build -t nexus-app .</div>
+          <p>Creates an optimised Alpine-based image with only production dependencies.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>Run Container</h3>
+          <div class="code-block">docker run -d -p 3000:3000 \<br>&nbsp;&nbsp;--name nexus-app nexus-app</div>
+          <p>Starts the container in detached mode, mapping port 3000 on host to container.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>Or Use Compose</h3>
+          <div class="code-block">docker compose up -d</div>
+          <p>Spins everything up with one command including health checks and restart policy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="container">
+      <p class="section-eye">// INCLUDED</p>
+      <h2 class="section-title">What's Inside</h2>
+      <div class="features-grid">
+        <div class="feat">
+          <div class="feat-icon">🐳</div>
+          <h4>Multi-Stage Dockerfile</h4>
+          <p>Separate build and runtime stages. Final image uses Alpine for minimal size.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🏥</div>
+          <h4>Health Endpoint</h4>
+          <p><code>GET /health</code> — returns JSON status, uptime, and timestamp. Used by Docker HEALTHCHECK.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">📦</div>
+          <h4>docker-compose.yml</h4>
+          <p>Full compose config with restart policy, env vars, port mapping, and health check.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">🔒</div>
+          <h4>.dockerignore</h4>
+          <p>Excludes node_modules, .git, logs, and dev files from the Docker build context.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">⚙️</div>
+          <h4>ENV Configuration</h4>
+          <p>PORT and NODE_ENV configurable via environment variables or <code>.env</code> file.</p>
+        </div>
+        <div class="feat">
+          <div class="feat-icon">📄</div>
+          <h4>Static File Server</h4>
+          <p>Express serves everything in <code>/public</code> with SPA fallback routing built in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <span class="logo">NEXUS<span class="logo-dot">▮</span></span>
+      <span>Node.js · Express · Docker · Alpine Linux</span>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

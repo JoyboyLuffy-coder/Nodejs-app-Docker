@@ -1,0 +1,41 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime          # explicit stage target
+
+    image: nexus-app:latest
+    container_name: nexus-app
+
+    ports:
+      - "${HOST_PORT:-3000}:3000"
+
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 3000
+
+    # Restart unless explicitly stopped
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+    # Resource limits (optional — adjust to your host)
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 128M
+        reservations:
+          memory: 64M
+
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
