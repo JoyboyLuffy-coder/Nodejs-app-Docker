@@ -1,3 +1,4 @@
+
 # Nexus — Static Node.js App for Docker
 
 A production-ready static file server built with **Node.js + Express**, containerised with a multi-stage **Dockerfile**, and orchestrated with **docker-compose**.
@@ -106,3 +107,6 @@ The multi-stage build produces a minimal Alpine-based image (~130 MB) by:
 - Installing only production dependencies (`npm ci --omit=dev`)
 - Using `node:20-alpine` as the runtime base
 - Running as a non-root user for security
+=======
+# Nodejs-app-Docker
+
